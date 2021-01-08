@@ -15,7 +15,7 @@ class WebServerTest {
 	@Test
 	public void testGetSetPort() throws InvalidPortNumberException {
 		WebServer.setPort(8080);
-		assertEquals("8080",WebServer.getPort());
+		assertEquals(8080,WebServer.getPort());
 	}
 	
 	@Test
@@ -36,19 +36,18 @@ class WebServerTest {
 		assertEquals("Invalid Status",exception.getMessage());
 	}
 	
+	@Test
+	public void testServerFunctionality2() throws Exception {
+		WebServer.maintenance();
+		assertEquals("MAINTENANCE",WebServer.STATUS);
+	}
+	
 	//in order to test this method you must run the WebServer class and comment the Ignore annotation
-//	@Ignore
+	@Ignore
 	@Test
 	public void testServerFunctionality() {
 		WebServer.stop();
 		assertEquals("STOPPED",WebServer.STATUS);
 	}
 	
-	//in order to test this method you must run the WebServer class and comment the Ignore annotation
-	@Ignore
-	@Test
-	public void testServerFunctionality2() throws Exception {
-		WebServer.maintenance();
-		assertEquals("MAINTENANCE",WebServer.STATUS);
-	}
 }
