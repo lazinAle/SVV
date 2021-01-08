@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import exceptions.InvalidReqException;
 
 public class Request {
-    private String requestType;
-    private String path;
+    private String requestType = null;
+    private String path = "";
     
     public String getRequestType() {
 		return this.requestType;
@@ -25,20 +25,22 @@ public class Request {
 
     public Request(InputStream inputStream) throws IOException, InvalidReqException {
         BufferedReader bufferReader = new BufferedReader(new InputStreamReader(inputStream));
-        String tmp = bufferReader.readLine();
-        if(tmp != null) {
-        	parseRequest(tmp);
-        }
+        String data = bufferReader.readLine();
+        splitRequest(data);
+        
     }
 
-    public void parseRequest(String request) throws InvalidReqException {
-    	String[] split = request.split("\\s+");
+    public void splitRequest(String data) throws InvalidReqException {
+    	String[] splited = data.split("\\");
         try {
-        	requestType = split[0];
+        	requestType = splited[0];
         } catch (Exception e) {
-        	requestType = null;
         	throw new InvalidReqException();
         }
-        path = split[1];
+        if(splited.length > 0) {
+        	path = splited[1];
+        } else {
+        	path = splited[0];
+        }
     }
 }

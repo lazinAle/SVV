@@ -3,6 +3,7 @@ package server;
 import java.net.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import exceptions.InvalidPathException;
 import exceptions.InvalidPortNumberException;
@@ -10,17 +11,12 @@ import exceptions.InvalidStatusException;
 
 
 public class WebServer {
-	public static ServerSocket SERVERSOCKET = null;
+	private static ServerSocket SERVERSOCKET = null;
 	private static ExecutorService EXECUTOR = Executors.newFixedThreadPool(2);
 	private static Configuration CONFIGURATION = new Configuration();
 	public static String STATUS = "STOPPED";
 
 	public static void main(String[] args) throws Exception {
-		//uncomment and change the following lines, if necessary
-		//initialize.setPath(...); 
-		//initialize.setPortNumber(...); //default is 10008
-		
-		//uncomment the line below to test the stopServer() method
 		start();
 	}
 	
@@ -55,6 +51,7 @@ public class WebServer {
 			}
 			STATUS = "RUNNING" ;			
 	        while(STATUS.equals("RUNNING")) {
+	        	System.out.println("Server is running...");
 	        	EXECUTOR.submit(new ReqHandler(SERVERSOCKET.accept()));
 	        }
 		}
@@ -63,10 +60,11 @@ public class WebServer {
 	public static void stop() {
 		if(!STATUS.equals("STOPPED")) {
 			try {
+				System.out.println("... Server stoped");
 				SERVERSOCKET.close();
 				STATUS = "STOPPED";
 			} catch (Exception e) {
-				System.err.println("Error at STOP: " + e);
+				System.err.println(e);
 				System.exit(1);
 			}
 		}
@@ -78,9 +76,8 @@ public class WebServer {
 				SERVERSOCKET = new ServerSocket(CONFIGURATION.getPortNumber());
 			}
 			STATUS = "MAINTENANCE";
-	        while(STATUS.equals("MAINTENANCE")) {
-	        	EXECUTOR.submit(new ReqHandler(SERVERSOCKET.accept()));
-	        }
+			System.out.println("Maintenance - for 15 seconds");
+	        TimeUnit.SECONDS.sleep(15);
 		}
 	}
 }

@@ -37,10 +37,18 @@ class WebServerTest {
 	}
 	
 	//in order to test this method you must run the WebServer class and comment the Ignore annotation
-	@Ignore
+//	@Ignore
 	@Test
-	public void testStopServer() {
+	public void testServerFunctionality() {
 		WebServer.stop();
 		assertEquals("STOPPED",WebServer.STATUS);
+	}
+	
+	//in order to test this method you must run the WebServer class and comment the Ignore annotation
+	@Ignore
+	@Test
+	public void testServerFunctionality2() throws Exception {
+		WebServer.maintenance();
+		assertEquals("MAINTENANCE",WebServer.STATUS);
 	}
 }
