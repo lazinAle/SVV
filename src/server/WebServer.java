@@ -21,7 +21,7 @@ public class WebServer {
 		//initialize.setPortNumber(...); //default is 10008
 		
 		//uncomment the line below to test the stopServer() method
-		//start();
+		start();
 	}
 	
 	public static String getPort() {
@@ -60,7 +60,7 @@ public class WebServer {
 		}
 	}
 	
-	public static void stopServer() {
+	public static void stop() {
 		if(!STATUS.equals("STOPPED")) {
 			try {
 				SERVERSOCKET.close();

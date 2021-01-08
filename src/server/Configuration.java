@@ -9,7 +9,7 @@ public class Configuration {
 		
 		public Configuration() {
 			this.path = "C:\\Users\\lazin\\OneDrive\\Desktop\\SVV - project";
-			this.portNumber = 12345;
+			this.portNumber = 123;
 		}
 		
 		public Configuration(String path, int portNo) throws InvalidPortNumberException, InvalidPathException{

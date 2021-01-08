@@ -2,6 +2,7 @@ package Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
 import exceptions.InvalidPathException;
@@ -33,5 +34,13 @@ class WebServerTest {
 	public void testSetInorrectStatus() throws InvalidStatusException {
 		InvalidStatusException exception = assertThrows(InvalidStatusException.class, () -> WebServer.setStatus("run"));
 		assertEquals("Invalid Status",exception.getMessage());
+	}
+	
+	//in order to test this method you must run the WebServer class and comment the Ignore annotation
+	@Ignore
+	@Test
+	public void testStopServer() {
+		WebServer.stop();
+		assertEquals("STOPPED",WebServer.STATUS);
 	}
 }

@@ -14,7 +14,7 @@ class ConfigTest {
 		@Test
 		public void testConstructor1() {
 			Configuration c = new Configuration();
-			assertEquals(12345,c.getPortNumber());
+			assertEquals(123,c.getPortNumber());
 		}
 		
 		@Test
@@ -46,7 +46,7 @@ class ConfigTest {
 		@Test
 		public void testGetPortNumber() {
 			Configuration c = new Configuration();
-			assertEquals(12345,c.getPortNumber());
+			assertEquals(123,c.getPortNumber());
 		}
 		
 		@Test()
@@ -73,8 +73,8 @@ class ConfigTest {
 		@Test
 		public void testSetCorrectPort() throws InvalidPortNumberException{
 			Configuration c = new Configuration();
-			c.setPortNumber(8080);
-			assertEquals(8080,c.getPortNumber());
+			c.setPortNumber(8000);
+			assertEquals(8000,c.getPortNumber());
 		}
 		
 		@Test
